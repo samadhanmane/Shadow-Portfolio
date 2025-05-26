@@ -39,6 +39,30 @@ const ProjectsSection = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const projectVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -46,74 +70,109 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Featured Projects</h2>
           <div className="w-24 h-1 bg-white mx-auto"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <motion.div 
+          className="grid md:grid-cols-2 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-colors group"
+              variants={projectVariants}
+              whileHover={{ 
+                y: -10,
+                transition: { duration: 0.3 }
+              }}
+              className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all duration-300 group"
             >
               <div className="aspect-video bg-gray-800 relative overflow-hidden">
-                <img 
+                <motion.img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
                 />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-                  <a href={project.github} className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors">
+                <motion.div 
+                  className="absolute inset-0 bg-black/50 flex items-center justify-center space-x-4"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.a 
+                    href={project.github} 
+                    className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     <Github size={20} />
-                  </a>
-                  <a href={project.live} className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors">
+                  </motion.a>
+                  <motion.a 
+                    href={project.live} 
+                    className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     <ExternalLink size={20} />
-                  </a>
-                </div>
+                  </motion.a>
+                </motion.div>
               </div>
               
-              <div className="p-6">
+              <motion.div 
+                className="p-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
                 <h3 className="text-xl font-bold mb-3">{project.title}</h3>
                 <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, techIndex) => (
-                    <span
+                    <motion.span
                       key={techIndex}
                       className="px-3 py-1 bg-gray-800 text-sm rounded-full border border-gray-700"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.1 * techIndex, duration: 0.3 }}
+                      whileHover={{ scale: 1.05 }}
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
                 
                 <div className="flex space-x-4">
-                  <a
+                  <motion.a
                     href={project.github}
                     className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
+                    whileHover={{ x: 5 }}
                   >
                     <Github size={18} />
                     <span>Code</span>
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
                     href={project.live}
                     className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
+                    whileHover={{ x: 5 }}
                   >
                     <Eye size={18} />
                     <span>Live Demo</span>
-                  </a>
+                  </motion.a>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
