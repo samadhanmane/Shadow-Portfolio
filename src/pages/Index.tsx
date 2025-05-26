@@ -3,6 +3,7 @@ import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text3D, Center, Environment } from '@react-three/drei';
 import { motion } from 'framer-motion';
+import { Download } from 'lucide-react';
 import Hero3D from '../components/Hero3D';
 import AboutSection from '../components/AboutSection';
 import SkillsSection from '../components/SkillsSection';
@@ -11,6 +12,23 @@ import ContactSection from '../components/ContactSection';
 import Navigation from '../components/Navigation';
 
 const Index = () => {
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const downloadResume = () => {
+    // Create a temporary link element to trigger download
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // You'll need to add your resume PDF to the public folder
+    link.download = 'Alex_Thompson_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="bg-black text-white min-h-screen">
       <Navigation />
@@ -37,17 +55,27 @@ const Index = () => {
             <h1 className="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
               Alex Thompson
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 font-light">
+            <p className="text-xl md:text-2xl text-gray-300 font-light mb-8">
               Computer Engineer & Full-Stack Developer
             </p>
             <motion.div 
-              className="mt-8"
+              className="flex flex-col sm:flex-row gap-4 items-center justify-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1.5 }}
             >
-              <button className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+              <button 
+                onClick={scrollToProjects}
+                className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+              >
                 Explore My Work
+              </button>
+              <button 
+                onClick={downloadResume}
+                className="flex items-center space-x-2 bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors"
+              >
+                <Download size={20} />
+                <span>Download Resume</span>
               </button>
             </motion.div>
           </motion.div>
