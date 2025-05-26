@@ -1,7 +1,7 @@
 
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text3D, Center, Float } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 const Hero3D = () => {
@@ -42,8 +42,8 @@ const Hero3D = () => {
           <octahedronGeometry args={[1, 0]} />
           <meshStandardMaterial 
             color="white" 
-            wireframe 
-            transparent 
+            wireframe={true}
+            transparent={true}
             opacity={0.6}
           />
         </mesh>
@@ -54,8 +54,8 @@ const Hero3D = () => {
           <icosahedronGeometry args={[0.8, 0]} />
           <meshStandardMaterial 
             color="white" 
-            wireframe 
-            transparent 
+            wireframe={true}
+            transparent={true}
             opacity={0.4}
           />
         </mesh>
@@ -66,8 +66,8 @@ const Hero3D = () => {
           <tetrahedronGeometry args={[1.2, 0]} />
           <meshStandardMaterial 
             color="white" 
-            wireframe 
-            transparent 
+            wireframe={true}
+            transparent={true}
             opacity={0.5}
           />
         </mesh>
@@ -86,7 +86,7 @@ const Hero3D = () => {
         <pointsMaterial
           size={0.02}
           color="white"
-          transparent
+          transparent={true}
           opacity={0.6}
         />
       </points>
