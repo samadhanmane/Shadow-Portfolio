@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Brain, Cpu, Globe } from 'lucide-react';
@@ -33,7 +32,7 @@ const AboutSection = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: "-100px" }}
+        viewport={{ once: true, margin: "-100px" }}
         className="text-center mb-16"
       >
         <motion.h2 
@@ -53,7 +52,7 @@ const AboutSection = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: "-100px" }}
+        viewport={{ once: true, margin: "-100px" }}
       >
         <motion.div
           variants={itemVariants}
