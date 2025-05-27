@@ -51,10 +51,10 @@ const CursorTrail = () => {
         {particles.map((particle, index) => (
           <motion.div
             key={particle.id}
-            className="absolute w-3 h-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30"
+            className="absolute w-[5px] h-[5px] rounded-full bg-white/20 backdrop-blur-sm border border-white/30"
             style={{
-              left: particle.x - 6,
-              top: particle.y - 6,
+              left: particle.x - 2.5,
+              top: particle.y - 2.5,
             }}
             initial={{ 
               scale: 0,
