@@ -51,29 +51,29 @@ const CursorTrail = () => {
         {particles.map((particle, index) => (
           <motion.div
             key={particle.id}
-            className="absolute w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm border border-white/40"
+            className="absolute w-3 h-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30"
             style={{
-              left: particle.x - 16,
-              top: particle.y - 16,
+              left: particle.x - 6,
+              top: particle.y - 6,
             }}
             initial={{ 
               scale: 0,
               opacity: 1,
             }}
             animate={{ 
-              scale: [0, 1.5, 1, 0],
-              opacity: [1, 0.8, 0.5, 0],
-              x: Math.sin(index * 0.3) * 40,
-              y: Math.cos(index * 0.3) * 40,
+              scale: [0, 1, 0.8, 0],
+              opacity: [1, 0.6, 0.3, 0],
+              x: Math.sin(index * 0.3) * 20,
+              y: Math.cos(index * 0.3) * 20,
             }}
             exit={{ 
               scale: 0,
               opacity: 0 
             }}
             transition={{ 
-              duration: 4,
+              duration: 3,
               ease: "easeOut",
-              delay: index * 0.03
+              delay: index * 0.02
             }}
           />
         ))}
