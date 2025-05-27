@@ -38,23 +38,47 @@ const SkillsSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
+        staggerChildren: 0.15,
+        delayChildren: 0.1
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 80, scale: 0.8 },
+    hidden: { opacity: 0, y: 60, scale: 0.8 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         ease: "easeOut"
       }
     }
+  };
+
+  const skillVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const progressVariants = {
+    hidden: { width: 0 },
+    visible: (level: number) => ({
+      width: `${level}%`,
+      transition: {
+        duration: 1.2,
+        ease: "easeOut",
+        delay: 0.2
+      }
+    })
   };
 
   return (
@@ -76,7 +100,7 @@ const SkillsSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
@@ -93,23 +117,32 @@ const SkillsSection = () => {
                 className="text-xl font-bold mb-6 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + categoryIndex * 0.1, duration: 0.6 }}
+                transition={{ delay: 0.1 + categoryIndex * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
               >
                 {category.title}
               </motion.h3>
-              <div className="space-y-4">
+              
+              <motion.div 
+                className="space-y-4"
+                initial="hidden"
+                whileInView="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.1,
+                      delayChildren: 0.2 + categoryIndex * 0.1
+                    }
+                  }
+                }}
+                viewport={{ once: true, margin: "-50px" }}
+              >
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div 
                     key={skillIndex}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ 
-                      delay: 0.3 + categoryIndex * 0.2 + skillIndex * 0.1, 
-                      duration: 0.6,
-                      ease: "easeOut"
-                    }}
-                    viewport={{ once: true, margin: "-20px" }}
+                    variants={skillVariants}
                   >
                     <div className="flex justify-between mb-2">
                       <span className="text-sm font-medium">{skill.name}</span>
@@ -118,19 +151,16 @@ const SkillsSection = () => {
                     <div className="w-full bg-gray-800 rounded-full h-2">
                       <motion.div
                         className="bg-gradient-to-r from-white to-gray-300 h-2 rounded-full"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ 
-                          duration: 1.8, 
-                          delay: 0.5 + categoryIndex * 0.2 + skillIndex * 0.15, 
-                          ease: "easeOut" 
-                        }}
-                        viewport={{ once: true, margin: "-20px" }}
+                        variants={progressVariants}
+                        custom={skill.level}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-50px" }}
                       />
                     </div>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
