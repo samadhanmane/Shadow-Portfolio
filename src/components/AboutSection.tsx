@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Brain, Cpu, Globe } from 'lucide-react';
@@ -57,8 +56,6 @@ const AboutSection = () => {
       >
         <motion.div
           variants={itemVariants}
-          whileHover={{ scale: 1.05, rotate: 5 }}
-          transition={{ type: "spring", stiffness: 300 }}
         >
           <div className="aspect-square bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center shadow-2xl">
             <motion.div 

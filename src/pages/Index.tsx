@@ -10,6 +10,7 @@ import SkillsSection from '../components/SkillsSection';
 import ProjectsSection from '../components/ProjectsSection';
 import ContactSection from '../components/ContactSection';
 import Navigation from '../components/Navigation';
+import CursorTrail from '../components/CursorTrail';
 
 const Index = () => {
   const scrollToProjects = () => {
@@ -31,6 +32,7 @@ const Index = () => {
 
   return (
     <div className="bg-black text-white min-h-screen">
+      <CursorTrail />
       <Navigation />
       
       {/* Hero Section with 3D */}
