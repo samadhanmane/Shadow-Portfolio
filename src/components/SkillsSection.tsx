@@ -38,20 +38,20 @@ const SkillsSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
+        staggerChildren: 0.3,
+        delayChildren: 0.2
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    hidden: { opacity: 0, y: 80, scale: 0.8 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         ease: "easeOut"
       }
     }
@@ -64,7 +64,7 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Skills & Expertise</h2>
@@ -76,23 +76,25 @@ const SkillsSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={categoryIndex}
               variants={cardVariants}
               whileHover={{ 
-                y: -10,
+                y: -15,
+                scale: 1.02,
                 transition: { duration: 0.3 }
               }}
               className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-gray-600 transition-all duration-300"
             >
               <motion.h3 
                 className="text-xl font-bold mb-6 text-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 + categoryIndex * 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
               >
                 {category.title}
               </motion.h3>
@@ -100,10 +102,14 @@ const SkillsSection = () => {
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div 
                     key={skillIndex}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 * skillIndex, duration: 0.5 }}
-                    viewport={{ once: true }}
+                    transition={{ 
+                      delay: 0.3 + categoryIndex * 0.2 + skillIndex * 0.1, 
+                      duration: 0.6,
+                      ease: "easeOut"
+                    }}
+                    viewport={{ once: true, margin: "-20px" }}
                   >
                     <div className="flex justify-between mb-2">
                       <span className="text-sm font-medium">{skill.name}</span>
@@ -111,11 +117,15 @@ const SkillsSection = () => {
                     </div>
                     <div className="w-full bg-gray-800 rounded-full h-2">
                       <motion.div
-                        className="bg-white h-2 rounded-full"
+                        className="bg-gradient-to-r from-white to-gray-300 h-2 rounded-full"
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1.5, delay: 0.2 * skillIndex, ease: "easeOut" }}
-                        viewport={{ once: true }}
+                        transition={{ 
+                          duration: 1.8, 
+                          delay: 0.5 + categoryIndex * 0.2 + skillIndex * 0.15, 
+                          ease: "easeOut" 
+                        }}
+                        viewport={{ once: true, margin: "-20px" }}
                       />
                     </div>
                   </motion.div>

@@ -19,21 +19,25 @@ const CursorTrail = () => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       
-      // Add new particle
-      const newParticle: Particle = {
-        id: particleId++,
-        x: e.clientX,
-        y: e.clientY,
-        timestamp: Date.now()
-      };
+      // Add new particle every few pixels moved
+      if (particleId % 3 === 0) { // Reduce frequency slightly
+        const newParticle: Particle = {
+          id: particleId++,
+          x: e.clientX,
+          y: e.clientY,
+          timestamp: Date.now()
+        };
 
-      setParticles(prev => [...prev, newParticle]);
+        setParticles(prev => [...prev, newParticle]);
+      } else {
+        particleId++;
+      }
     };
 
     // Clean up old particles every 100ms
     const cleanupInterval = setInterval(() => {
       const now = Date.now();
-      setParticles(prev => prev.filter(particle => now - particle.timestamp < 4000));
+      setParticles(prev => prev.filter(particle => now - particle.timestamp < 5000));
     }, 100);
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -50,29 +54,29 @@ const CursorTrail = () => {
         {particles.map((particle, index) => (
           <motion.div
             key={particle.id}
-            className="absolute w-3 h-3 rounded-full bg-white/20 backdrop-blur-sm"
+            className="absolute w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm border border-white/40"
             style={{
-              left: particle.x - 6,
-              top: particle.y - 6,
+              left: particle.x - 12,
+              top: particle.y - 12,
             }}
             initial={{ 
               scale: 0,
-              opacity: 0.8,
+              opacity: 1,
             }}
             animate={{ 
-              scale: [0, 1, 0.5, 0],
-              opacity: [0.8, 0.6, 0.3, 0],
-              x: Math.sin(index * 0.5) * 20,
-              y: Math.cos(index * 0.5) * 20,
+              scale: [0, 1.2, 0.8, 0],
+              opacity: [1, 0.8, 0.5, 0],
+              x: Math.sin(index * 0.3) * 30,
+              y: Math.cos(index * 0.3) * 30,
             }}
             exit={{ 
               scale: 0,
               opacity: 0 
             }}
             transition={{ 
-              duration: 4,
+              duration: 5,
               ease: "easeOut",
-              delay: index * 0.02
+              delay: index * 0.05
             }}
           />
         ))}
@@ -80,13 +84,13 @@ const CursorTrail = () => {
       
       {/* Main cursor glow */}
       <motion.div
-        className="absolute w-8 h-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
+        className="absolute w-12 h-12 rounded-full bg-white/15 backdrop-blur-md border border-white/30"
         style={{
-          left: mousePosition.x - 16,
-          top: mousePosition.y - 16,
+          left: mousePosition.x - 24,
+          top: mousePosition.y - 24,
         }}
         animate={{
-          scale: [1, 1.2, 1],
+          scale: [1, 1.3, 1],
         }}
         transition={{
           duration: 2,
