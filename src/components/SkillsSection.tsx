@@ -88,7 +88,7 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ margin: "-50px" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Skills & Expertise</h2>
@@ -100,7 +100,7 @@ const SkillsSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ margin: "-100px" }}
         >
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
@@ -118,7 +118,7 @@ const SkillsSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + categoryIndex * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
+                viewport={{}}
               >
                 {category.title}
               </motion.h3>
@@ -137,7 +137,7 @@ const SkillsSection = () => {
                     }
                   }
                 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ margin: "-50px" }}
               >
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div 
@@ -155,7 +155,7 @@ const SkillsSection = () => {
                         custom={skill.level}
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ margin: "-50px" }}
                       />
                     </div>
                   </motion.div>
