@@ -1,43 +1,11 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Eye } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { projects } from '../data/projects';
 
 const ProjectsSection = () => {
-  const projects = [
-    {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Docker'],
-      github: '#',
-      live: '#',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop'
-    },
-    {
-      title: 'AI Task Manager',
-      description: 'Smart task management application with AI-powered prioritization and scheduling. Built with Next.js and integrated with OpenAI API.',
-      technologies: ['Next.js', 'TypeScript', 'OpenAI API', 'Prisma', 'TailwindCSS'],
-      github: '#',
-      live: '#',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop'
-    },
-    {
-      title: 'Real-time Analytics Dashboard',
-      description: 'Interactive dashboard for real-time data visualization with custom charts and filtering capabilities.',
-      technologies: ['Vue.js', 'D3.js', 'WebSocket', 'Express', 'MongoDB'],
-      github: '#',
-      live: '#',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop'
-    },
-    {
-      title: 'Microservices Architecture',
-      description: 'Scalable microservices backend with containerized deployment and service mesh architecture.',
-      technologies: ['Docker', 'Kubernetes', 'Node.js', 'Redis', 'AWS'],
-      github: '#',
-      live: '#',
-      image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=400&h=300&fit=crop'
-    }
-  ];
+  const navigate = useNavigate();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -61,6 +29,10 @@ const ProjectsSection = () => {
         ease: "easeOut"
       }
     }
+  };
+
+  const handleProjectClick = (projectId: string) => {
+    navigate(`/projects/${projectId}`);
   };
 
   return (
@@ -92,7 +64,8 @@ const ProjectsSection = () => {
                 y: -10,
                 transition: { duration: 0.3 }
               }}
-              className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all duration-300 group"
+              className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all duration-300 group cursor-pointer"
+              onClick={() => handleProjectClick(project.id)}
             >
               <div className="aspect-video bg-gray-800 relative overflow-hidden">
                 <motion.img 
@@ -113,6 +86,7 @@ const ProjectsSection = () => {
                     className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Github size={20} />
                   </motion.a>
@@ -121,6 +95,7 @@ const ProjectsSection = () => {
                     className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <ExternalLink size={20} />
                   </motion.a>
@@ -156,6 +131,7 @@ const ProjectsSection = () => {
                     href={project.github}
                     className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
                     whileHover={{ x: 5 }}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Github size={18} />
                     <span>Code</span>
@@ -164,6 +140,7 @@ const ProjectsSection = () => {
                     href={project.live}
                     className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
                     whileHover={{ x: 5 }}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Eye size={18} />
                     <span>Live Demo</span>

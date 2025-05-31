@@ -1,34 +1,82 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 
 const SkillsSection = () => {
   const skillCategories = [
     {
-      title: 'Frontend',
+      title: 'Core Programming',
       skills: [
-        { name: 'React/Next.js', level: 95 },
-        { name: 'TypeScript', level: 90 },
-        { name: 'Vue.js', level: 85 },
-        { name: 'CSS/Tailwind', level: 92 }
+        { 
+          name: 'C++',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg',
+          description: 'Advanced programming with C++'
+        },
+        { 
+          name: 'Java',
+          image: 'https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg',
+          description: 'Object-oriented programming'
+        },
+        { 
+          name: 'C',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg',
+          description: 'System programming'
+        },
+        { 
+          name: 'Python',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg',
+          description: 'General purpose programming'
+        },
+        
       ]
     },
     {
-      title: 'Backend',
+      title: 'Web Development',
       skills: [
-        { name: 'Node.js', level: 88 },
-        { name: 'Python', level: 85 },
-        { name: 'PostgreSQL', level: 80 },
-        { name: 'MongoDB', level: 82 }
+        { 
+          name: 'HTML5',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg',
+          description: 'Web structure'
+        },
+        { 
+          name: 'CSS3',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg',
+          description: 'Web styling'
+        },
+        { 
+          name: 'JavaScript',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
+          description: 'Web interactivity'
+        },
+        { 
+          name: 'React',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
+          description: 'Frontend framework'
+        }
       ]
     },
     {
-      title: 'DevOps & Tools',
+      title: 'Data & Tools',
       skills: [
-        { name: 'Docker', level: 85 },
-        { name: 'AWS', level: 78 },
-        { name: 'Git', level: 95 },
-        { name: 'Linux', level: 88 }
+        { 
+          name: 'MongoDB',
+          image: 'https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg',
+          description: 'NoSQL database'
+        },
+        { 
+          name: 'SQL/PLSQL',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png',
+          description: 'Relational database'
+        },
+        { 
+          name: 'MATLAB',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png',
+          description: 'Numerical computing'
+        },
+        { 
+          name: 'Tableau',
+          image: 'https://cdn.worldvectorlogo.com/logos/tableau-software.svg',
+          description: 'Data visualization'
+        }
       ]
     }
   ];
@@ -58,10 +106,10 @@ const SkillsSection = () => {
   };
 
   const skillVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
         duration: 0.5,
         ease: "easeOut"
@@ -69,34 +117,22 @@ const SkillsSection = () => {
     }
   };
 
-  const progressVariants = {
-    hidden: { width: 0 },
-    visible: (level: number) => ({
-      width: `${level}%`,
-      transition: {
-        duration: 1.2,
-        ease: "easeOut",
-        delay: 0.2
-      }
-    })
-  };
-
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950">
+    <section id="skills" className="pt-12 pb-4 px-4 sm:px-6 lg:px-8 bg-gray-950">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ margin: "-50px" }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Skills & Expertise</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills & Expertise</h2>
           <div className="w-24 h-1 bg-white mx-auto"></div>
         </motion.div>
 
         <motion.div 
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -111,56 +147,49 @@ const SkillsSection = () => {
                 scale: 1.02,
                 transition: { duration: 0.3 }
               }}
-              className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-gray-600 transition-all duration-300"
+              className="bg-gray-900/50 p-4 rounded-xl border border-gray-800 hover:border-gray-600 transition-all duration-300"
             >
               <motion.h3 
-                className="text-xl font-bold mb-6 text-center"
+                className="text-xl font-bold mb-4 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + categoryIndex * 0.1, duration: 0.5 }}
-                viewport={{}}
+                viewport={{ once: true }}
               >
                 {category.title}
               </motion.h3>
-              
-              <motion.div 
-                className="space-y-4"
-                initial="hidden"
-                whileInView="visible"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.1,
-                      delayChildren: 0.2 + categoryIndex * 0.1
-                    }
-                  }
-                }}
-                viewport={{ margin: "-50px" }}
-              >
+              <div className="grid grid-cols-2 gap-3">
                 {category.skills.map((skill, skillIndex) => (
-                  <motion.div 
+                  <motion.div
                     key={skillIndex}
                     variants={skillVariants}
+                    className="flex flex-col items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors group"
+                    whileHover={{ 
+                      scale: 1.05,
+                      transition: { duration: 0.2 }
+                    }}
                   >
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-400">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-gray-800 rounded-full h-2">
-                      <motion.div
-                        className="bg-gradient-to-r from-white to-gray-300 h-2 rounded-full"
-                        variants={progressVariants}
-                        custom={skill.level}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ margin: "-50px" }}
+                    <motion.div
+                      className="mb-1 p-2 bg-white/10 rounded-lg w-14 h-14 flex items-center justify-center"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <img 
+                        src={skill.image} 
+                        alt={skill.name}
+                        className="w-10 h-10 object-contain"
+                        style={{
+                          filter: skill.name === 'Express' ? 'invert(1)' : 'none'
+                        }}
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://via.placeholder.com/48?text=' + skill.name;
+                        }}
                       />
-                    </div>
+                    </motion.div>
+                    <span className="text-sm font-medium text-center">{skill.name}</span>
+                    <span className="text-xs text-gray-400 text-center mt-0.5">{skill.description}</span>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
             </motion.div>
           ))}
         </motion.div>

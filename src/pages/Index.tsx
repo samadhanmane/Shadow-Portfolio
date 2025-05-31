@@ -1,8 +1,7 @@
-
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text3D, Center, Environment } from '@react-three/drei';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Download } from 'lucide-react';
 import Hero3D from '../components/Hero3D';
 import AboutSection from '../components/AboutSection';
@@ -24,7 +23,7 @@ const Index = () => {
     // Create a temporary link element to trigger download
     const link = document.createElement('a');
     link.href = '/resume.pdf'; // You'll need to add your resume PDF to the public folder
-    link.download = 'Alex_Thompson_Resume.pdf';
+    link.download = 'Samadhan_Mane_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -51,21 +50,23 @@ const Index = () => {
           <motion.div 
             className="text-center"
             initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
             transition={{ duration: 1, delay: 0.5 }}
           >
             <motion.h1 
-              className="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              Alex Thompson
+              Samadhan Mane
             </motion.h1>
             <motion.p 
               className="text-xl md:text-2xl text-gray-300 font-light mb-8"
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               Computer Engineer & Full-Stack Developer
@@ -73,7 +74,8 @@ const Index = () => {
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 items-center justify-center"
               initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8, delay: 1.2 }}
             >
               <motion.button 
@@ -101,7 +103,8 @@ const Index = () => {
       {/* Content Sections */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: false }}
         transition={{ duration: 0.5 }}
       >
         <AboutSection />

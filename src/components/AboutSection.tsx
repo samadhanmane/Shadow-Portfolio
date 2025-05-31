@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Brain, Cpu, Globe } from 'lucide-react';
@@ -59,13 +58,11 @@ const AboutSection = () => {
           variants={itemVariants}
         >
           <div className="aspect-square bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center shadow-2xl">
-            <motion.div 
-              className="text-6xl"
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            >
-              👨‍💻
-            </motion.div>
+            <motion.img
+              src="/Samadhan_Prof.jpg"
+              alt="Samadhan Profile"
+              className="w-full h-full object-cover border-4 border-white shadow-lg rounded-2xl -rotate-3"
+            />
           </div>
         </motion.div>
 

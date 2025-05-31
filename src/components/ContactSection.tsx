@@ -1,19 +1,40 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    subject: '',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const { subject, message } = formData;
+    const mailtoLink = `mailto:samadhanmane2324@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    
+    window.location.href = mailtoLink;
+  };
+
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'alex.thompson@email.com', href: 'mailto:alex.thompson@email.com' },
-    { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567', href: 'tel:+15551234567' },
-    { icon: MapPin, label: 'Location', value: 'San Francisco, CA', href: '#' }
+    { icon: Mail, label: 'Email', value: 'samadhanmane2324@gmail.com', href: 'mailto:samadhanmane2324@gmail.com' },
+    { icon: Phone, label: 'Phone', value: '+91 8010427685', href: 'tel:+918010427685' },
+    { icon: MapPin, label: 'Location', value: 'Pune, Maharashtra, India', href: '#' }
   ];
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' }
+    { icon: Github, href: 'https://github.com/SamadhanMane', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/samadhan-mane/', label: 'LinkedIn' },
+    { icon: Twitter, href: 'https://x.com/Samadha90118157', label: 'Twitter' }
   ];
 
   const containerVariants = {
@@ -46,7 +67,7 @@ const ContactSection = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h2>
@@ -62,7 +83,7 @@ const ContactSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
         >
           <motion.div
             variants={itemVariants}
@@ -126,34 +147,18 @@ const ContactSection = () => {
             <motion.form 
               className="space-y-6"
               variants={containerVariants}
+              onSubmit={handleSubmit}
             >
-              <motion.div variants={itemVariants}>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors"
-                  placeholder="Your Name"
-                />
-              </motion.div>
-              
-              <motion.div variants={itemVariants}>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors"
-                  placeholder="your.email@example.com"
-                />
-              </motion.div>
-              
               <motion.div variants={itemVariants}>
                 <label htmlFor="subject" className="block text-sm font-medium mb-2">Subject</label>
                 <input
                   type="text"
                   id="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors"
                   placeholder="Project Discussion"
+                  required
                 />
               </motion.div>
               
@@ -161,9 +166,12 @@ const ContactSection = () => {
                 <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
                 <textarea
                   id="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   rows={6}
                   className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors resize-none"
                   placeholder="Tell me about your project..."
+                  required
                 />
               </motion.div>
               
