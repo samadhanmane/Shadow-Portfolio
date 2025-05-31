@@ -3,11 +3,11 @@ import BookMyHall2 from '../assets/BookMyHall2.png';
 import BookMyHall3 from '../assets/BookMyHall3.png';
 import BookMyHall4 from '../assets/BookMyHall4.png';
 import BookMyHall5 from '../assets/BookMyHall5.png';
-import Skillify1 from '../assets/Skillify1.png';
-import Skillify2 from '../assets/Skillify2.png';
-import Skillify3 from '../assets/Skillify3.png';
-import Skillify4 from '../assets/Skillify4.png';
-import Skillify5 from '../assets/Skillify5.png';
+import Skillify1 from '../assets/skillify1.png';
+import Skillify2 from '../assets/skillify2.png';
+import Skillify3 from '../assets/skillify3.png';
+import Skillify4 from '../assets/skillify4.png';
+import Skillify5 from '../assets/skillify5.png';
 
 export interface Project {
   id: string;
