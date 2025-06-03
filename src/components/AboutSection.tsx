@@ -74,9 +74,7 @@ const AboutSection = () => {
             className="text-lg text-gray-300 leading-relaxed"
             variants={itemVariants}
           >
-            I'm a passionate Computer Engineer with 5+ years of experience in full-stack development. 
-            I specialize in creating scalable web applications and have a deep love for clean, 
-            efficient code and innovative problem-solving.
+            I'm a passionate Computer Engineer with a strong foundation in full-stack development. I enjoy building scalable and user-friendly web applications. I take pride in writing clean, efficient code and love tackling challenges with creative problem-solving. I'm always eager to learn new technologies and improve my skills through real-world projects.
           </motion.p>
           
           <motion.p 
