@@ -13,12 +13,19 @@ This project showcases my work, skills, and projects as a web developer, highlig
 
 Portfolio/
 ├── assets/ # Images, icons, and other media
+
 ├── css/ # Stylesheets
+
 ├── js/ # JavaScript for interactions
+
 ├── index.html # Homepage
+
 ├── about.html # About Me section
+
 ├── projects.html # Project showcase
+
 ├── contact.html # Contact form and social links
+
 └── README.md # Project documentation
 
 
